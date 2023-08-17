@@ -21,7 +21,13 @@ if (empty($_SESSION['username']) or empty($_SESSION['password'])) {
     </head>
 
     <body>
-        <h1>Halo, <?= $_SESSION['username']; ?></h1>
+        <?php
+        $id_user = $_SESSION['id_user'];
+        $query = mysqli_query($koneksi, "SELECT * FROM mahasiswa WHERE id_user='$id_user'");
+        $data = mysqli_fetch_array($query);
+        ?>
+        <h1>Halo, <?= $data['nama_mahasiswa']; ?></h1>
+        <p>Username anda adalah <?= $_SESSION['username']; ?></p>
         <a href="../logout.php">Logout</a>
     </body>
 
